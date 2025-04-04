@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Faith – Church Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F8F9FA;
+      margin: 0;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #2C3E50;
+    }
+
+    #custom-chat-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 9999;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Hide Flowise branding */
+    .flowise-chatbot-container .powered-by {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Freedom Fellowship!</h1>
+  <p>Click the chat icon below to talk to <strong>Faith</strong>, our Church Assistant.</p>
+
+  <!-- Custom Chat Button -->
+  <img id="custom-chat-button" src="https://i.postimg.cc/brWcmGJg/freedom-fellowship-avatar.png" alt="Chat with Faith">
+
+  <!-- Flowise Chatbot Embed -->
+  <script type="module">
+    import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
+
+    const bot = Chatbot.init({
+      chatflowid: "22aaf45b-420b-4f69-940c-48e68429b9d0",
+      apiHost: "https://flowise-y6zd.onrender.com",
+      theme: {
+        chatWindow: {
+          title: "Faith – Your Church Assistant",
+          titleColor: "#2C3E50",
+          backgroundColor: "#F8F9FA",
+          welcomeMessage: "Hello! 👋 I'm Faith. How can I assist you today?",
+          poweredByTextColor: "transparent",
+          botMessage: {
+            backgroundColor: "#EAF1FB",
+            textColor: "#2C3E50",
+            showAvatar: true,
+            avatarSrc: "https://i.postimg.cc/brWcmGJg/freedom-fellowship-avatar.png"
+          },
+          userMessage: {
+            backgroundColor: "#2C3E50",
+            textColor: "#FFFFFF"
+          },
+          textInput: {
+            placeholder: "Ask me anything about our church...",
+            backgroundColor: "#FFFFFF",
+            textColor: "#000000",
+            sendButtonColor: "#2C3E50"
+          }
+        }
+      }
+    });
+
+    // Trigger chat on custom image click
+    document.getElementById("custom-chat-button").addEventListener("click", () => {
+      bot.openChat();
+    });
+  </script>
+</body>
+</html>
